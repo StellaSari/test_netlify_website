@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegance Landing Page</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@200;300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: #F9EBE0; /* linen */
+            color: #60492C; /* kobicha */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+            color: #60492C;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Utility classes */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #208AAE; /* bondi blue */
+            color: #F9EBE0;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            font-weight: 300;
+        }
+
+        .btn:hover {
+            background-color: #166d85;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* Use an alabaster background for the header */
+            background-color: #F2ECE3;
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        header .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            /* Make header text color smoky black */
+            color: #0F0D06;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+            /* Set navigation links to smoky black */
+            color: #0F0D06;
+        }
+
+        nav a:hover {
+            /* On hover keep the accent color for contrast */
+            color: #208AAE;
+        }
+
+        /* Hero section */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 100vh;
+            align-items: center;
+            padding-top: 80px; /* space for fixed header */
+            background-image: url('hero.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* overlay for hero to improve text contrast */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(249, 235, 224, 0.3), rgba(249, 235, 224, 0.5));
+            backdrop-filter: blur(2px);
+            z-index: 0;
+        }
+
+        .hero-text {
+            flex: 1 1 100%;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            font-weight: 200;
+            text-transform: uppercase;
+            color: #ffffff;
+            letter-spacing: 3px;
+            line-height: 0.9;
+        }
+
+        .hero-text p {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+
+        /* About section */
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 4rem 0;
+            background-color: #ffffff;
+        }
+
+        .about-img {
+            flex: 1 1 45%;
+            padding: 2rem;
+        }
+
+        .about-img img {
+            width: 100%;
+            /* Remove rounded corners for a cleaner, square look */
+            border-radius: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .about-text {
+            flex: 1 1 55%;
+            padding: 2rem;
+        }
+
+        .about-text h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery section */
+        .gallery {
+            padding: 4rem 0;
+            /* Use alabaster background for the gallery/Curated Moments section */
+            background-color: #F2ECE3;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            /* Set heading color to smoky black */
+            color: #0F0D06;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        /* CTA section */
+        .cta {
+            padding: 4rem 0;
+            background-color: #122F68;
+            color: #F9EBE0;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #F9EBE0;
+            font-family: 'Playfair Display', serif;
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .cta p {
+            margin-bottom: 2rem;
+            color: #F9EBE0;
+        }
+
+        .cta .btn {
+            background-color: #208AAE;
+            color: #F9EBE0;
+        }
+
+        /* CTA section background overlay using the same image as the footer */
+        .cta::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('footer_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        .cta .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #122F68;
+            color: #F9EBE0;
+            /* Increase padding to reveal more of the background image */
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 0.875rem;
+            position: relative;
+        }
+
+        /* Footer background overlay */
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('footer_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        /* Ensure footer content appears above overlay */
+        footer .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive typography */
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            .hero-text p {
+                font-size: 1rem;
+            }
+            nav ul {
+                flex-wrap: wrap;
+            }
+            /* Adjust gallery to two columns on medium screens */
+            .image-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            /* Single column gallery on small screens */
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo">Timeless Stories</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <h1>Embrace the Art of Storytelling</h1>
+            <p>Step through the doorway to discover narratives woven with passion, precision and purpose. Our curated visuals and words create lasting impressions.</p>
+            <a href="#contact" class="btn">Begin Your Journey</a>
+        </div>
+        <!-- Hero image container removed; background applied to hero section -->
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="book.jpg" alt="Classic book on a table">
+        </div>
+        <div class="about-text">
+            <h2>Our Philosophy</h2>
+            <p>We believe in the power of evocative visuals and masterful narrative. Each project we craft blends history and modernity, inviting your audience into an immersive experience.</p>
+            <p>From concept to completion, our team is dedicated to delivering stories that resonate and captivate. Whether it's a brand journey, a product launch or a personal tale, we shape memories that endure.</p>
+            <a href="#gallery" class="btn">See Our Work</a>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2>Curated Moments</h2>
+        <div class="container image-grid">
+            <img src="moodboard1.jpg" alt="Moodboard collage 1">
+            <img src="moodboard2.jpg" alt="Moodboard collage 2">
+            <img src="moodboard3.jpg" alt="Moodboard collage 3">
+            <img src="blu_mix.jpg" alt="Blue mix textures">
+            <img src="chess_watch.jpg" alt="Watch on chess board">
+            <img src="old_box.jpg" alt="Old box with parchments and key">
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Ready to Tell Your Story?</h2>
+            <p>We'd love to bring your vision to life. Reach out and let's create something unforgettable together.</p>
+            <a href="mailto:info@example.com" class="btn">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            &copy; 2025 Timeless Stories. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
