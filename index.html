@@ -381,5 +381,40 @@
             &copy; 2025 Timeless Stories. All rights reserved.
         </div>
     </footer>
+    <script>
+  async function loadContent() {
+    const spaceId = '524ozsc8g9tr';
+    const accessToken = 'tzwHUMsv5Oo7goET7Tah18RhYvgP4EOidI4DtxrSNIY';
+
+    const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?access_token=${accessToken}&content_type=homepage`;
+
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if (!data.items || data.items.length === 0) {
+        console.warn('No homepage entry found in Contentful');
+        return;
+      }
+
+      const fields = data.items[0].fields;
+
+      if (fields.heroTitle) {
+        document.getElementById('hero-title').textContent = fields.heroTitle;
+      }
+      if (fields.heroSubtitle) {
+        document.getElementById('hero-subtitle').textContent = fields.heroSubtitle;
+      }
+      if (fields.heroButtonLabel) {
+        document.getElementById('hero-button').textContent = fields.heroButtonLabel;
+      }
+
+    } catch (err) {
+      console.error('Error loading Contentful content', err);
+    }
+  }
+
+  loadContent();
+</script>
 </body>
 </html>
